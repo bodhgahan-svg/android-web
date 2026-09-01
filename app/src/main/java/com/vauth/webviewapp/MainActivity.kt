@@ -397,6 +397,7 @@ class MainActivity : AppCompatActivity() {
                     val cleanJs = "javascript:(function() { " +
     "var f = document.querySelector('footer'); if(f) f.style.display='none';" +
     "var h = document.querySelector('header'); if(h) h.style.display='none';" +
+    "var n = document.querySelector('nav'); if(n) n.style.display='none';" +
     "})();"
 view?.evaluateJavascript(cleanJs, null)
 
