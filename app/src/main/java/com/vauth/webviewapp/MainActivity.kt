@@ -394,6 +394,12 @@ class MainActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 try {
                     super.onPageFinished(view, url)
+                    val cleanJs = "javascript:(function() { " +
+    "var f = document.querySelector('footer'); if(f) f.style.display='none';" +
+    "var h = document.querySelector('header'); if(h) h.style.display='none';" +
+    "})();"
+view?.evaluateJavascript(cleanJs, null)
+
                     progressBar?.visibility = View.GONE
                     // Hide loading overlay after first page loads
                     if (isFirstPageLoad) {
