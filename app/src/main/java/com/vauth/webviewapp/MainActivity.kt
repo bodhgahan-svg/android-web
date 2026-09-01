@@ -394,12 +394,14 @@ class MainActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 try {
                     super.onPageFinished(view, url)
-                    val cleanJs = "javascript:(function() { " +
-    "var style = document.createElement('style');" +
-    "style.innerHTML = 'header, footer, nav, .banner, div[class*=\"header\"], div[class*=\"banner\"] { display: none !important; }';" +
-    "document.head.appendChild(style);" +
+                   val cleanJs = "javascript:(function() { " +
+    "setInterval(function() {" +
+    "  var elements = document.querySelectorAll('header, nav, footer');" +
+    "  elements.forEach(function(el) { el.style.display = 'none'; });" +
+    "}, 100);" +
     "})();"
 view?.evaluateJavascript(cleanJs, null)
+
 
 
                     progressBar?.visibility = View.GONE
