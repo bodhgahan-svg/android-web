@@ -395,11 +395,12 @@ class MainActivity : AppCompatActivity() {
                 try {
                     super.onPageFinished(view, url)
                     val cleanJs = "javascript:(function() { " +
-    "var f = document.querySelector('footer'); if(f) f.style.display='none';" +
-    "var h = document.querySelector('header'); if(h) h.style.display='none';" +
-    "var n = document.querySelector('nav'); if(n) n.style.display='none';" +
+    "var style = document.createElement('style');" +
+    "style.innerHTML = 'header, footer, nav, .banner, div[class*=\"header\"], div[class*=\"banner\"] { display: none !important; }';" +
+    "document.head.appendChild(style);" +
     "})();"
 view?.evaluateJavascript(cleanJs, null)
+
 
                     progressBar?.visibility = View.GONE
                     // Hide loading overlay after first page loads
